@@ -20,6 +20,8 @@ async function fetchWithRetry(url, options, retries = 3, delayMs = 8000) {
   }
 }
 
+const API_BASE_URL = 'https://athiraraj-heart-disease-predictor.hf.space';
+
 async function runPrediction() {
   const btn = document.getElementById('predictBtn');
   const resultDiv = document.getElementById('result');
@@ -56,7 +58,7 @@ async function runPrediction() {
   };
 
   try {
-    const res = await fetchWithRetry('/predict', {
+    const res = await fetchWithRetry(`${API_BASE_URL}/predict`, {
       method : 'POST',
       headers: { 'Content-Type': 'application/json' },
       body   : JSON.stringify(payload),
