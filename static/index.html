@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HeartAI — Explainable Heart Disease Risk Prediction</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a class="logo" href="#home">🫀 Heart<span>AI</span></a>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#predict">Predict</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <a class="nav-link" href="https://github.com/athi-raj/Heart-Disease-Predictor" target="_blank">GitHub</a>
+    <a class="nav-link" href="https://colab.research.google.com/drive/1h-ywzkRNOZDsp1NOk18sucCMg7qDIYsX?usp=sharing" target="_blank">Colab</a>
+  </div>
+
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">☰</button>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <span class="badge">Deep Learning + Explainable AI · UCI Dataset</span>
+  <h1>Predict Heart Disease Risk <span>With Explainable AI</span></h1>
+  <p>
+    Enter patient clinical details to receive a cardiovascular risk assessment,
+    a feature-contribution breakdown, and personalized preventive recommendations —
+    powered by a neural network trained on the UCI Heart Disease dataset.
+  </p>
+  <div class="hero-buttons">
+    <a href="#predict" class="btn-primary">Start Assessment</a>
+    <a href="#about" class="btn-secondary">Learn More</a>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stat-card">
+    <h2>920+</h2>
+    <p>Patient Records</p>
+  </div>
+  <div class="stat-card">
+    <h2>4</h2>
+    <p>Clinical Datasets</p>
+  </div>
+  <div class="stat-card">
+    <h2>AI + XAI</h2>
+    <p>Explainable Predictions</p>
+  </div>
+  <div class="stat-card">
+    <h2>24/7</h2>
+    <p>Instant Analysis</p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2 class="section-title">About HeartAI</h2>
+  <div class="card narrow">
+    <p>
+      HeartAI is an explainable artificial intelligence platform built to support
+      early cardiovascular risk screening. It combines a deep learning classifier with
+      a feature-contribution analysis so every prediction comes with a transparent,
+      human-readable explanation rather than a black-box number.
+    </p>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <h2 class="section-title">Features</h2>
+  <div class="feature-grid">
+    <div class="card">
+      <h3>🧠 Deep Learning</h3>
+      <p>A neural network trained on four clinical datasets predicts risk from 14 patient parameters.</p>
+    </div>
+    <div class="card">
+      <h3>🔍 Explainable AI</h3>
+      <p>See exactly which clinical factors pushed the prediction toward higher or lower risk.</p>
+    </div>
+    <div class="card">
+      <h3>📊 Visual Breakdown</h3>
+      <p>A feature-contribution chart shows the top factors influencing each individual result.</p>
+    </div>
+    <div class="card">
+      <h3>💊 Recommendations</h3>
+      <p>Personalized, actionable guidance based on the patient's strongest risk factor.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PREDICT -->
+<section id="predict">
+  <h2 class="section-title">Patient Clinical Details</h2>
+  <p class="section-sub">All fields required · Results are for educational purposes only</p>
+
+  <div class="predictor">
+    <div class="form-grid">
+
+      <div class="field">
+        <label for="age">Age</label>
+        <div class="slider-row">
+          <input type="range" id="age" min="1" max="100" value="50"
+            oninput="document.getElementById('age_v').textContent=this.value" />
+          <span class="slider-display" id="age_v">50</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="sex">Sex</label>
+        <select id="sex">
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="dataset">Dataset (Institution)</label>
+        <select id="dataset">
+          <option>Cleveland</option>
+          <option>Hungary</option>
+          <option>Switzerland</option>
+          <option>VA Long Beach</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="cp">Chest Pain Type</label>
+        <select id="cp">
+          <option>typical angina</option>
+          <option>atypical angina</option>
+          <option>non-anginal</option>
+          <option>asymptomatic</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="trestbps">Resting Blood Pressure (mmHg)</label>
+        <div class="slider-row">
+          <input type="range" id="trestbps" min="80" max="220" value="120"
+            oninput="document.getElementById('trestbps_v').textContent=this.value" />
+          <span class="slider-display" id="trestbps_v">120</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="chol">Cholesterol (mg/dl)</label>
+        <div class="slider-row">
+          <input type="range" id="chol" min="100" max="600" value="200"
+            oninput="document.getElementById('chol_v').textContent=this.value" />
+          <span class="slider-display" id="chol_v">200</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="fbs">Fasting Blood Sugar &gt; 120 mg/dl</label>
+        <select id="fbs">
+          <option>True</option>
+          <option>False</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="restecg">Resting ECG</label>
+        <select id="restecg">
+          <option>normal</option>
+          <option>st-t abnormality</option>
+          <option>lv hypertrophy</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="thalch">Maximum Heart Rate</label>
+        <div class="slider-row">
+          <input type="range" id="thalch" min="60" max="220" value="150"
+            oninput="document.getElementById('thalch_v').textContent=this.value" />
+          <span class="slider-display" id="thalch_v">150</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="exang">Exercise Induced Angina</label>
+        <select id="exang">
+          <option>True</option>
+          <option>False</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="oldpeak">Old Peak (ST Depression)</label>
+        <div class="slider-row">
+          <input type="range" id="oldpeak" min="0" max="7" step="0.1" value="1.0"
+            oninput="document.getElementById('oldpeak_v').textContent=parseFloat(this.value).toFixed(1)" />
+          <span class="slider-display" id="oldpeak_v">1.0</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="slope">Slope</label>
+        <select id="slope">
+          <option>upsloping</option>
+          <option>flat</option>
+          <option>downsloping</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="ca">Major Vessels (ca)</label>
+        <div class="slider-row">
+          <input type="range" id="ca" min="0" max="4" step="1" value="0"
+            oninput="document.getElementById('ca_v').textContent=this.value" />
+          <span class="slider-display" id="ca_v">0</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="thal">Thal</label>
+        <select id="thal">
+          <option>normal</option>
+          <option>fixed defect</option>
+          <option>reversable defect</option>
+        </select>
+      </div>
+
+    </div>
+
+    <button class="btn-predict" id="predictBtn" onclick="runPrediction()">
+      ⚡ Run Prediction
+    </button>
+
+    <div id="result"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2 class="section-title">Contact</h2>
+  <div class="card narrow">
+    <p><strong>Athira Raj</strong></p>
+    <p>B.Tech Computer Science and Engineering</p>
+    <p>Machine Learning · Data Science · AI</p>
+  </div>
+</section>
+
+<footer>
+  Built for preventive healthcare · Powered by Explainable AI ·
+  <a href="https://github.com/athi-raj/Heart-Disease-Predictor" target="_blank">GitHub</a>
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
